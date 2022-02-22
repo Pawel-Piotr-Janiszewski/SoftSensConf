@@ -157,9 +157,9 @@ namespace SoftSensConf
         }
         private string getNewSerial()
         {
-          
+
             return NewSerial.Text;
-            
+
 
         }
         private float getNewUpperValue()
