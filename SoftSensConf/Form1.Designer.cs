@@ -78,6 +78,7 @@
             this.StatusTimer = new System.Windows.Forms.Timer(this.components);
             this.OpenConfigDialog = new System.Windows.Forms.OpenFileDialog();
             this.SaveConfigDialog = new System.Windows.Forms.SaveFileDialog();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.tabControl1.SuspendLayout();
             this.SerialConf.SuspendLayout();
             this.InstrumentControl.SuspendLayout();
@@ -497,6 +498,7 @@
             this.ConfFromFile.TabIndex = 1;
             this.ConfFromFile.Text = "Load Config From File";
             this.ConfFromFile.UseVisualStyleBackColor = true;
+            this.ConfFromFile.Click += new System.EventHandler(this.ConfFromFile_Click);
             // 
             // CurrentConf
             // 
@@ -552,6 +554,10 @@
             // OpenConfigDialog
             // 
             this.OpenConfigDialog.FileName = "OpenConfigDialog";
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // SoftSensConf
             // 
@@ -625,6 +631,7 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.OpenFileDialog OpenConfigDialog;
         private System.Windows.Forms.SaveFileDialog SaveConfigDialog;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 

@@ -45,9 +45,19 @@ namespace SoftSensConf
                   });
 
             }
-            
+            if (recievedData[0] == "writeconf" && recievedData[1] == "1\r")
+            {
+                MessageBox.Show("Correct Password! Instrument Configuration has been changed!");
+                serialPort1.WriteLine("readconf");
+                //MessageBox.Show(wa);
+            }
+            if (recievedData[0] =="writeconf" && recievedData[1] == "0\r")
+            {
+                MessageBox.Show("Wrong Password! Try again! Instrument Configuration has not been changed!");
+            }
 
-        }
+        }                
+            
         
         private void ConnectButt_Click(object sender, EventArgs e)
         {
@@ -157,9 +167,9 @@ namespace SoftSensConf
         }
         private string getNewSerial()
         {
-          
+
             return NewSerial.Text;
-            
+
 
         }
         private float getNewUpperValue()
@@ -193,7 +203,7 @@ namespace SoftSensConf
                 MessageBox.Show("lower value is out of range 0.0 - 500");
                 return "";
             }
-            if (uv <= 500.0 || uv >= 1000.0)
+            if (uv < 500.0 || uv > 1000.0)
             {
                 MessageBox.Show("Upper value is out of range 500.0 - 1000.0");
                 return "";
@@ -203,7 +213,7 @@ namespace SoftSensConf
                 MessageBox.Show("The upper and lower value cannot be the same!");
                 return "";
             }
-            if (al <= 0.0 || al >= 500.0)
+            if (al < 0.0 || al > 500.0)
             {
                 MessageBox.Show("Alarm Lower is out of range 0.0 - 500.0");
                 return "";
@@ -248,13 +258,14 @@ namespace SoftSensConf
             int al = getNewAlarmLower();
             int au = getNewAlarmUpper();
             string sendAll = ValidateText(n, lv, uv, al, au);
-            string passwordbox = Interaction.InputBox("Enter Password:", "Password", "..", 10, 10);
+            string passwordbox = Interaction.InputBox("Authentication is required to update instrument values. Please enter password:", "Authentication Required", "..", 10, 10);
             serialPort1.WriteLine("writeconf"+">" + passwordbox + ">" + sendAll);
             
 
+        }
 
-
-
+        private void ConfFromFile_Click(object sender, EventArgs e)
+        {
 
         }
     }
