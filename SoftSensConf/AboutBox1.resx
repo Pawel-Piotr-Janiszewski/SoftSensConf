@@ -117,25 +117,55 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="serialPort1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="StatusTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>126, 17</value>
-  </metadata>
-  <metadata name="OpenConfigDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>242, 17</value>
-  </metadata>
-  <metadata name="SaveConfigDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>395, 17</value>
-  </metadata>
-  <metadata name="openFileDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>543, 17</value>
-  </metadata>
-  <metadata name="MonitorTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>683, 17</value>
-  </metadata>
-  <metadata name="AlarmTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>809, 17</value>
-  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="logoPictureBox.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+        IZPgoa/vP2XvuDexM2E+AAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="textBoxDescription.Text" xml:space="preserve">
+    <value>Description:
+SoftSensConf is a standalone software that lets user communicate with and configure the usnTopSens - an industrial light intensity measurement instrument.
+
+
+Developed by TeamUSN in cooperation with Pawel Piotr Janiszewski
+https://www.usn.no/english/about/
+</value>
+  </data>
 </root>

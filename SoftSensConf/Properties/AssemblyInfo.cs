@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("SoftSensConf")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Description: SoftSensConf is a standalone software that lets user communicate with and configure the usnTopSens - an industrial light intensity measurement instrument.\r\n\r\nDeveloped by Pawel Piotr Janiszewski in cooperation with Team USN.\r\nhttps://www.usn.no/english/about/")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("SoftSensConf")]
-[assembly: AssemblyCopyright("Copyright ©  2022")]
+[assembly: AssemblyCompany("Company Name: TeamUSN")]
+[assembly: AssemblyProduct("Product Name: SoftSensConf")]
+[assembly: AssemblyCopyright("Copyright ©: (CC BY 4.0)")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
