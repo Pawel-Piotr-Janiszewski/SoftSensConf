@@ -29,10 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.SerialConf = new System.Windows.Forms.TabPage();
+            this.SerialStatusTextBox = new System.Windows.Forms.Label();
+            this.About = new System.Windows.Forms.Button();
             this.SerialLightStatus = new System.Windows.Forms.TextBox();
-            this.SerialStatusTextBox = new System.Windows.Forms.TextBox();
             this.DisconnectButt = new System.Windows.Forms.Button();
             this.ConnectButt = new System.Windows.Forms.Button();
             this.BitBox = new System.Windows.Forms.ComboBox();
@@ -40,6 +44,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.InstrumentControl = new System.Windows.Forms.TabPage();
+            this.StatusInstCon = new System.Windows.Forms.Label();
             this.NewAlarmLow = new System.Windows.Forms.TextBox();
             this.NewAlarmUP = new System.Windows.Forms.TextBox();
             this.NewLower = new System.Windows.Forms.TextBox();
@@ -66,24 +71,39 @@
             this.label9 = new System.Windows.Forms.Label();
             this.SaveConf = new System.Windows.Forms.Button();
             this.LightInstCont = new System.Windows.Forms.TextBox();
-            this.StatusInstCon = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.ConfFromFile = new System.Windows.Forms.Button();
             this.CurrentConf = new System.Windows.Forms.Button();
             this.CurrentValues = new System.Windows.Forms.TabPage();
+            this.ConStatCV = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.AlarmLightStatus = new System.Windows.Forms.TextBox();
+            this.SaveSensorData = new System.Windows.Forms.Button();
+            this.AlarmStatus = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.MonitorList = new System.Windows.Forms.ListBox();
+            this.MonitorPlot = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.MonitorType = new System.Windows.Forms.Label();
+            this.ScaledVal = new System.Windows.Forms.CheckBox();
+            this.StopMonitoring = new System.Windows.Forms.Button();
+            this.Readraw = new System.Windows.Forms.Button();
             this.LightStatCV = new System.Windows.Forms.TextBox();
-            this.ConStatCV = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.StatusTimer = new System.Windows.Forms.Timer(this.components);
             this.OpenConfigDialog = new System.Windows.Forms.OpenFileDialog();
             this.SaveConfigDialog = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.MonitorTimer = new System.Windows.Forms.Timer(this.components);
+            this.AlarmTimer = new System.Windows.Forms.Timer(this.components);
             this.tabControl1.SuspendLayout();
             this.SerialConf.SuspendLayout();
             this.InstrumentControl.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.CurrentValues.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.MonitorPlot)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -99,8 +119,9 @@
             // 
             // SerialConf
             // 
-            this.SerialConf.Controls.Add(this.SerialLightStatus);
             this.SerialConf.Controls.Add(this.SerialStatusTextBox);
+            this.SerialConf.Controls.Add(this.About);
+            this.SerialConf.Controls.Add(this.SerialLightStatus);
             this.SerialConf.Controls.Add(this.DisconnectButt);
             this.SerialConf.Controls.Add(this.ConnectButt);
             this.SerialConf.Controls.Add(this.BitBox);
@@ -115,6 +136,27 @@
             this.SerialConf.Text = "Serial Port Configuration";
             this.SerialConf.UseVisualStyleBackColor = true;
             // 
+            // SerialStatusTextBox
+            // 
+            this.SerialStatusTextBox.AutoSize = true;
+            this.SerialStatusTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SerialStatusTextBox.Location = new System.Drawing.Point(384, 35);
+            this.SerialStatusTextBox.Name = "SerialStatusTextBox";
+            this.SerialStatusTextBox.Size = new System.Drawing.Size(14, 20);
+            this.SerialStatusTextBox.TabIndex = 9;
+            this.SerialStatusTextBox.Text = "-";
+            // 
+            // About
+            // 
+            this.About.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.About.Location = new System.Drawing.Point(259, 110);
+            this.About.Name = "About";
+            this.About.Size = new System.Drawing.Size(97, 25);
+            this.About.TabIndex = 8;
+            this.About.Text = "About";
+            this.About.UseVisualStyleBackColor = true;
+            this.About.Click += new System.EventHandler(this.About_Click);
+            // 
             // SerialLightStatus
             // 
             this.SerialLightStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -122,14 +164,6 @@
             this.SerialLightStatus.Name = "SerialLightStatus";
             this.SerialLightStatus.Size = new System.Drawing.Size(21, 26);
             this.SerialLightStatus.TabIndex = 7;
-            // 
-            // SerialStatusTextBox
-            // 
-            this.SerialStatusTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SerialStatusTextBox.Location = new System.Drawing.Point(374, 31);
-            this.SerialStatusTextBox.Name = "SerialStatusTextBox";
-            this.SerialStatusTextBox.Size = new System.Drawing.Size(110, 26);
-            this.SerialStatusTextBox.TabIndex = 6;
             // 
             // DisconnectButt
             // 
@@ -193,6 +227,7 @@
             // 
             // InstrumentControl
             // 
+            this.InstrumentControl.Controls.Add(this.StatusInstCon);
             this.InstrumentControl.Controls.Add(this.NewAlarmLow);
             this.InstrumentControl.Controls.Add(this.NewAlarmUP);
             this.InstrumentControl.Controls.Add(this.NewLower);
@@ -208,7 +243,6 @@
             this.InstrumentControl.Controls.Add(this.groupBox1);
             this.InstrumentControl.Controls.Add(this.SaveConf);
             this.InstrumentControl.Controls.Add(this.LightInstCont);
-            this.InstrumentControl.Controls.Add(this.StatusInstCon);
             this.InstrumentControl.Controls.Add(this.label3);
             this.InstrumentControl.Controls.Add(this.ConfFromFile);
             this.InstrumentControl.Controls.Add(this.CurrentConf);
@@ -219,6 +253,15 @@
             this.InstrumentControl.TabIndex = 1;
             this.InstrumentControl.Text = "Instrument Control";
             this.InstrumentControl.UseVisualStyleBackColor = true;
+            // 
+            // StatusInstCon
+            // 
+            this.StatusInstCon.AutoSize = true;
+            this.StatusInstCon.Location = new System.Drawing.Point(713, 505);
+            this.StatusInstCon.Name = "StatusInstCon";
+            this.StatusInstCon.Size = new System.Drawing.Size(10, 13);
+            this.StatusInstCon.TabIndex = 35;
+            this.StatusInstCon.Text = "-";
             // 
             // NewAlarmLow
             // 
@@ -465,6 +508,7 @@
             this.SaveConf.TabIndex = 9;
             this.SaveConf.Text = "Save Config to File";
             this.SaveConf.UseVisualStyleBackColor = true;
+            this.SaveConf.Click += new System.EventHandler(this.SaveConf_Click);
             // 
             // LightInstCont
             // 
@@ -473,17 +517,10 @@
             this.LightInstCont.Size = new System.Drawing.Size(21, 20);
             this.LightInstCont.TabIndex = 8;
             // 
-            // StatusInstCon
-            // 
-            this.StatusInstCon.Location = new System.Drawing.Point(693, 502);
-            this.StatusInstCon.Name = "StatusInstCon";
-            this.StatusInstCon.Size = new System.Drawing.Size(95, 20);
-            this.StatusInstCon.TabIndex = 7;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(590, 505);
+            this.label3.Location = new System.Drawing.Point(610, 505);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(97, 13);
             this.label3.TabIndex = 2;
@@ -513,16 +550,168 @@
             // 
             // CurrentValues
             // 
-            this.CurrentValues.Controls.Add(this.LightStatCV);
             this.CurrentValues.Controls.Add(this.ConStatCV);
+            this.CurrentValues.Controls.Add(this.groupBox2);
+            this.CurrentValues.Controls.Add(this.ScaledVal);
+            this.CurrentValues.Controls.Add(this.StopMonitoring);
+            this.CurrentValues.Controls.Add(this.Readraw);
+            this.CurrentValues.Controls.Add(this.LightStatCV);
             this.CurrentValues.Controls.Add(this.label4);
             this.CurrentValues.Location = new System.Drawing.Point(4, 22);
             this.CurrentValues.Name = "CurrentValues";
             this.CurrentValues.Padding = new System.Windows.Forms.Padding(3);
             this.CurrentValues.Size = new System.Drawing.Size(831, 530);
             this.CurrentValues.TabIndex = 2;
-            this.CurrentValues.Text = "CurrentValues";
+            this.CurrentValues.Text = "Current Values";
             this.CurrentValues.UseVisualStyleBackColor = true;
+            // 
+            // ConStatCV
+            // 
+            this.ConStatCV.AutoSize = true;
+            this.ConStatCV.Location = new System.Drawing.Point(713, 505);
+            this.ConStatCV.Name = "ConStatCV";
+            this.ConStatCV.Size = new System.Drawing.Size(10, 13);
+            this.ConStatCV.TabIndex = 12;
+            this.ConStatCV.Text = "-";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.groupBox2.Controls.Add(this.AlarmLightStatus);
+            this.groupBox2.Controls.Add(this.SaveSensorData);
+            this.groupBox2.Controls.Add(this.AlarmStatus);
+            this.groupBox2.Controls.Add(this.label17);
+            this.groupBox2.Controls.Add(this.label18);
+            this.groupBox2.Controls.Add(this.MonitorList);
+            this.groupBox2.Controls.Add(this.MonitorPlot);
+            this.groupBox2.Controls.Add(this.MonitorType);
+            this.groupBox2.Location = new System.Drawing.Point(341, 6);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(484, 465);
+            this.groupBox2.TabIndex = 11;
+            this.groupBox2.TabStop = false;
+            // 
+            // AlarmLightStatus
+            // 
+            this.AlarmLightStatus.Location = new System.Drawing.Point(454, 424);
+            this.AlarmLightStatus.Name = "AlarmLightStatus";
+            this.AlarmLightStatus.Size = new System.Drawing.Size(21, 20);
+            this.AlarmLightStatus.TabIndex = 14;
+            // 
+            // SaveSensorData
+            // 
+            this.SaveSensorData.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SaveSensorData.Location = new System.Drawing.Point(10, 419);
+            this.SaveSensorData.Name = "SaveSensorData";
+            this.SaveSensorData.Size = new System.Drawing.Size(170, 31);
+            this.SaveSensorData.TabIndex = 11;
+            this.SaveSensorData.Text = "Save  Sensor Data";
+            this.SaveSensorData.UseVisualStyleBackColor = true;
+            this.SaveSensorData.Click += new System.EventHandler(this.SaveSensorData_Click);
+            // 
+            // AlarmStatus
+            // 
+            this.AlarmStatus.AutoSize = true;
+            this.AlarmStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AlarmStatus.Location = new System.Drawing.Point(352, 424);
+            this.AlarmStatus.Name = "AlarmStatus";
+            this.AlarmStatus.Size = new System.Drawing.Size(14, 20);
+            this.AlarmStatus.TabIndex = 13;
+            this.AlarmStatus.Text = "-";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(6, 16);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(154, 20);
+            this.label17.TabIndex = 7;
+            this.label17.Text = "Currently Monitoring:";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(241, 424);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(105, 20);
+            this.label18.TabIndex = 12;
+            this.label18.Text = "Alarm Status:";
+            // 
+            // MonitorList
+            // 
+            this.MonitorList.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MonitorList.FormattingEnabled = true;
+            this.MonitorList.ItemHeight = 20;
+            this.MonitorList.Location = new System.Drawing.Point(10, 244);
+            this.MonitorList.Name = "MonitorList";
+            this.MonitorList.Size = new System.Drawing.Size(399, 164);
+            this.MonitorList.TabIndex = 9;
+            // 
+            // MonitorPlot
+            // 
+            this.MonitorPlot.BackColor = System.Drawing.Color.WhiteSmoke;
+            chartArea1.Name = "ChartArea1";
+            this.MonitorPlot.ChartAreas.Add(chartArea1);
+            legend1.BackColor = System.Drawing.Color.WhiteSmoke;
+            legend1.Name = "Legend1";
+            this.MonitorPlot.Legends.Add(legend1);
+            this.MonitorPlot.Location = new System.Drawing.Point(6, 65);
+            this.MonitorPlot.Name = "MonitorPlot";
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            series1.LabelBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            series1.Legend = "Legend1";
+            series1.Name = "Instrument Values";
+            this.MonitorPlot.Series.Add(series1);
+            this.MonitorPlot.Size = new System.Drawing.Size(427, 173);
+            this.MonitorPlot.TabIndex = 10;
+            this.MonitorPlot.Text = "MonitorPlot";
+            // 
+            // MonitorType
+            // 
+            this.MonitorType.AutoSize = true;
+            this.MonitorType.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MonitorType.Location = new System.Drawing.Point(166, 16);
+            this.MonitorType.Name = "MonitorType";
+            this.MonitorType.Size = new System.Drawing.Size(14, 20);
+            this.MonitorType.TabIndex = 8;
+            this.MonitorType.Text = "-";
+            // 
+            // ScaledVal
+            // 
+            this.ScaledVal.AutoSize = true;
+            this.ScaledVal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ScaledVal.Location = new System.Drawing.Point(213, 39);
+            this.ScaledVal.Name = "ScaledVal";
+            this.ScaledVal.Size = new System.Drawing.Size(77, 24);
+            this.ScaledVal.TabIndex = 6;
+            this.ScaledVal.Text = "Scaled";
+            this.ScaledVal.UseVisualStyleBackColor = true;
+            // 
+            // StopMonitoring
+            // 
+            this.StopMonitoring.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StopMonitoring.Location = new System.Drawing.Point(16, 85);
+            this.StopMonitoring.Name = "StopMonitoring";
+            this.StopMonitoring.Size = new System.Drawing.Size(178, 31);
+            this.StopMonitoring.TabIndex = 4;
+            this.StopMonitoring.Text = "Stop The Monitoring";
+            this.StopMonitoring.UseVisualStyleBackColor = true;
+            this.StopMonitoring.Click += new System.EventHandler(this.StopMonitoring_Click);
+            // 
+            // Readraw
+            // 
+            this.Readraw.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Readraw.Location = new System.Drawing.Point(16, 35);
+            this.Readraw.Name = "Readraw";
+            this.Readraw.Size = new System.Drawing.Size(178, 31);
+            this.Readraw.TabIndex = 3;
+            this.Readraw.Text = "Start The Monitoring";
+            this.Readraw.UseVisualStyleBackColor = true;
+            this.Readraw.Click += new System.EventHandler(this.Readraw_Click);
             // 
             // LightStatCV
             // 
@@ -531,17 +720,10 @@
             this.LightStatCV.Size = new System.Drawing.Size(21, 20);
             this.LightStatCV.TabIndex = 2;
             // 
-            // ConStatCV
-            // 
-            this.ConStatCV.Location = new System.Drawing.Point(693, 502);
-            this.ConStatCV.Name = "ConStatCV";
-            this.ConStatCV.Size = new System.Drawing.Size(95, 20);
-            this.ConStatCV.TabIndex = 1;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(590, 505);
+            this.label4.Location = new System.Drawing.Point(610, 505);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(97, 13);
             this.label4.TabIndex = 0;
@@ -559,6 +741,14 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // MonitorTimer
+            // 
+            this.MonitorTimer.Tick += new System.EventHandler(this.MonitorTimer_Tick);
+            // 
+            // AlarmTimer
+            // 
+            this.AlarmTimer.Tick += new System.EventHandler(this.AlarmTimer_Tick);
+            // 
             // SoftSensConf
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -566,7 +756,7 @@
             this.ClientSize = new System.Drawing.Size(854, 571);
             this.Controls.Add(this.tabControl1);
             this.Name = "SoftSensConf";
-            this.Text = "SoftSensConf ver. 1.0";
+            this.Text = "SoftSensConf 1.0";
             this.tabControl1.ResumeLayout(false);
             this.SerialConf.ResumeLayout(false);
             this.SerialConf.PerformLayout();
@@ -576,6 +766,9 @@
             this.groupBox1.PerformLayout();
             this.CurrentValues.ResumeLayout(false);
             this.CurrentValues.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.MonitorPlot)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -587,7 +780,6 @@
         private System.Windows.Forms.TabPage InstrumentControl;
         private System.Windows.Forms.TabPage CurrentValues;
         private System.Windows.Forms.TextBox SerialLightStatus;
-        private System.Windows.Forms.TextBox SerialStatusTextBox;
         private System.Windows.Forms.Button DisconnectButt;
         private System.Windows.Forms.Button ConnectButt;
         private System.Windows.Forms.ComboBox BitBox;
@@ -598,12 +790,10 @@
         private System.Windows.Forms.Button ConfFromFile;
         private System.Windows.Forms.Button CurrentConf;
         private System.Windows.Forms.TextBox LightInstCont;
-        private System.Windows.Forms.TextBox StatusInstCon;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button SaveConf;
         private System.Windows.Forms.Timer StatusTimer;
         private System.Windows.Forms.TextBox LightStatCV;
-        private System.Windows.Forms.TextBox ConStatCV;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label7;
@@ -632,6 +822,24 @@
         private System.Windows.Forms.OpenFileDialog OpenConfigDialog;
         private System.Windows.Forms.SaveFileDialog SaveConfigDialog;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.DataVisualization.Charting.Chart MonitorPlot;
+        private System.Windows.Forms.ListBox MonitorList;
+        private System.Windows.Forms.Label MonitorType;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.CheckBox ScaledVal;
+        private System.Windows.Forms.Button StopMonitoring;
+        private System.Windows.Forms.Button Readraw;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button SaveSensorData;
+        private System.Windows.Forms.TextBox AlarmLightStatus;
+        private System.Windows.Forms.Label AlarmStatus;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Timer MonitorTimer;
+        private System.Windows.Forms.Button About;
+        private System.Windows.Forms.Timer AlarmTimer;
+        private System.Windows.Forms.Label SerialStatusTextBox;
+        private System.Windows.Forms.Label StatusInstCon;
+        private System.Windows.Forms.Label ConStatCV;
     }
 }
 
